@@ -1,0 +1,21 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 5c72082
+_src_path: https://github.com/maurosilber/python-lib-template
+github_username: EstradaLab-BiophotonicsGroup
+license: GNU
+max_python_version: '3.11'
+min_python_version: '3.11'
+platforms:
+- linux-64
+- win-64
+project_description: Decorrelates data, allowing for accurate calculation of molecular
+    brightness achieving better precision with fewer data points. This protocol of
+    data analysis provides insights into the effects of temporal data correlation
+    on molecular brightness calculations, a key parameter in fluorescence imaging
+    and molecular dynamics. Temporal correlations can distort brightness estimates
+    and significantly increase data volume and computational demands, we underscore
+    the necessity of data decorrelation strategies to enhance accuracy and efficiency
+project_name: mate-ba
+project_slug: mate_ba
+your_email: sallaberry.ignacio@gmail.com
+your_name: Ignacio Sallaberry and Laura Estrada

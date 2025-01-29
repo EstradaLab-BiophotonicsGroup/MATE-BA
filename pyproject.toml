@@ -1,0 +1,92 @@
+[project]
+name = "mate-ba"
+description = "Decorrelates data, allowing for accurate calculation of molecular brightness achieving better precision with fewer data points. This protocol of data analysis provides insights into the effects of temporal data correlation on molecular brightness calculations, a key parameter in fluorescence imaging and molecular dynamics. Temporal correlations can distort brightness estimates and significantly increase data volume and computational demands, we underscore the necessity of data decorrelation strategies to enhance accuracy and efficiency"
+version = "0.1.0"
+authors = [
+    { name = "Ignacio Sallaberry and Laura Estrada", email = "sallaberry.ignacio@gmail.com" }
+]
+readme = { file = "README.md", content-type = "text/markdown" }
+license = "GNU"
+classifiers = ["Programming Language :: Python :: 3"]
+requires-python = ">=3.11"
+dependencies = ["addcopyfighandler>=3.2.4,<4", "tqdm>=4.67.1,<5"]
+
+[project.urls]
+homepage = "https://github.com/EstradaLab-BiophotonicsGroup/mate-ba"
+issues = "https://github.com/EstradaLab-BiophotonicsGroup/mate-ba/issues"
+changelog = "https://github.com/EstradaLab-BiophotonicsGroup/mate-ba/blob/main/CHANGELOG.md"
+documentation = "https://EstradaLab-BiophotonicsGroup.github.io/mate-ba"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+addopts = "--import-mode=importlib"
+pythonpath = "."
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint]
+extend-select = ["I"]
+
+[tool.pyright]
+typeCheckingMode = "standard"
+venv = "default"
+venvPath = ".pixi/envs/"
+
+[tool.pixi.project]
+channels = ["https://repo.prefix.dev/conda-forge"]
+platforms = ['linux-64', 'win-64']
+
+[tool.pixi.dependencies]
+python = ">=3.11"
+pandas = ">=2.2.3,<3"
+scipy = ">=1.15.1,<2"
+
+[tool.pixi.environments]
+default = { features = ["test"] }
+lint = { features = ["lint"], no-default-feature = true }
+build = { features = ["build"], no-default-feature = true }
+test-py311 = ["test", "py311"]
+
+[tool.pixi.feature.lint.dependencies]
+pre-commit = "*"
+pre-commit-hooks = "*"
+taplo = "*"
+ruff = "*"
+mdformat = "*"
+mdformat-ruff = "*"
+pyright = "*"
+
+[tool.pixi.feature.lint.tasks]
+pre-commit-install = "pre-commit install"
+lint = "pre-commit run"
+
+[tool.pixi.feature.build.dependencies]
+uv = "*"
+python = "*" # required by mdremotifier
+
+[tool.pixi.feature.build.pypi-dependencies]
+mdremotifier = "*"
+
+[tool.pixi.feature.build.tasks]
+build = { cmd = "uv build", depends-on = ["remotify"] }
+publish = "uv publish"
+remotify = """mdremotifier -i README.md -o README.md
+--url-prefix https://github.com/EstradaLab-BiophotonicsGroup/mate-ba/blob/main
+--img-url-prefix https://raw.githubusercontent.com/EstradaLab-BiophotonicsGroup/mate-ba/refs/heads/main/
+"""
+
+[tool.pixi.feature.test.dependencies]
+pytest = "*"
+
+[tool.pixi.feature.test.pypi-dependencies]
+pytest-readme = "*"
+
+[tool.pixi.feature.test.tasks]
+test = "pytest --doctest-modules"
+
+[tool.pixi.feature.py311.dependencies]
+python = "3.11.*"
