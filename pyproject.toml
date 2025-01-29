@@ -43,7 +43,6 @@ pandas = ">=2.2.3,<3"
 scipy = ">=1.15.1,<2"
 
 [tool.pixi.environments]
-default = { features = ["test"] }
 lint = { features = ["lint"], no-default-feature = true }
 
 [tool.pixi.feature.lint.dependencies]
