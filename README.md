@@ -3,7 +3,6 @@
 [![Copier Badge][copier-badge]][copier-url]
 [![Pixi Badge][pixi-badge]][pixi-url]
 ![License][license-badge]
-![example workflow](https://github.com/EstradaLab-BiophotonicsGroup/MATE-BA/actions/workflows/ci.yml/badge.svg)
 
 Decorrelates data, allowing for accurate calculation of molecular brightness achieving better precision with fewer data points. This protocol of data analysis provides insights into the effects of temporal data correlation on molecular brightness calculations, a key parameter in fluorescence imaging and molecular dynamics. Temporal correlations can distort brightness estimates and significantly increase data volume and computational demands, we underscore the necessity of data decorrelation strategies to enhance accuracy and efficiency
 
