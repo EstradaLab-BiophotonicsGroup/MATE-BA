@@ -72,6 +72,7 @@ del points_random_D_100
 del points_random_D_200
 del points_random_D_400
 
+
 #%%
 ### Prepared vaiables only for ploting FIG 3
 X_corr = np.array([Epsilon_distributions_correlated_values_for_each_D[0],
@@ -179,11 +180,11 @@ for i, ax, x_corr, x_UN_corr, c, d in zip([0,1,2], axs.flatten(), X_corr, X_UN_c
     ax.set_ylim(-0.4/tp, 0.99/tp)
 
     ax.ticklabel_format(style='scientific', axis='y', scilimits=(6,6),  useMathText=True)  # Apply scientific notation to y-axis
-    ax.yaxis.get_offset_text().set_fontsize(fontsize-6)
+    ax.yaxis.get_offset_text().set_fontsize(fontsize-5)
 
 
-fig.supylabel(r'$\epsilon$ $_{median}$', fontsize = fontsize+1)
-fig.supxlabel('$N$', fontsize = fontsize-1)
+fig.supylabel(r'$\epsilon$ $_{median}$', fontsize = fontsize)
+fig.supxlabel('$N$', fontsize = fontsize)
 
 
 for ax in axs.flatten():
@@ -198,7 +199,7 @@ for ax in axs.flatten():
     for axis in ['top','bottom','left','right']:
         ax.spines[axis].set_linewidth(0.6)
 
-fig.subplots_adjust(top=0.795,
+fig.subplots_adjust(top=0.79,
                     bottom=0.14,
                     left=0.175,
                     right=0.9,
@@ -309,18 +310,16 @@ for i, ax in zip([0,4,1,5,2,6,3,7], axs.flatten()):
     
     ax.set_ylim(-0.48/tp, 0.9/tp)
     ax.ticklabel_format(style='scientific', axis='y', scilimits=(6,6),  useMathText=True)  # Apply scientific notation to y-axis
-    ax.yaxis.get_offset_text().set_fontsize(fontsize-6)
+    ax.yaxis.get_offset_text().set_fontsize(fontsize-5)
 
 
-fig.supylabel(r'$\epsilon$ $_{median}$', fontsize = fontsize+1, x=0.00001)
-fig.supxlabel('$N$', fontsize = fontsize-1)
+fig.supylabel(r'$\epsilon$ $_{median}$', fontsize = fontsize, x=0.00001)
+fig.supxlabel('$N$', fontsize = fontsize)
 
 
 for ax in axs.flatten():
     ax.tick_params(which='minor', length=1.25, width=1)
     ax.tick_params(which='major', length=2.25, width=1)
-    
-    ax.tick_params(axis='both', labelsize=fontsize-3)
     ax.tick_params(axis='both', labelsize=fontsize-3)
 
 
@@ -329,7 +328,7 @@ for ax in axs.flatten():
     for axis in ['top','bottom','left','right']:
         ax.spines[axis].set_linewidth(0.6)
 
-fig.subplots_adjust(top=0.85,
+fig.subplots_adjust(top=0.845,
                     bottom=0.125,
                     left=0.08,
                     right=0.955,
