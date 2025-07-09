@@ -26,8 +26,6 @@ N_1e4_index = min(range(len(N)), key=lambda i: abs(N[i]-1e4))
 N_1e6_index = min(range(len(N)), key=lambda i: abs(N[i]-1e6))
 
 #%%
-
-# intensity_points = read_B64(path[:-5]+r'\Simulations\Fig 1 and 2 - Simulations\Simulation Fig 1 and 2.b64')
 intensity_points = pd.read_csv(path[:-5]+r'\Simulation Data\Fig 1 - 2 and 4\Simulation Fig 1 - 2 and 4.csv.gz', compression='gzip', dtype=np.int16)['0'].to_numpy()
 points_random = Random_data(intensity_points, seed=SEED)    
 
@@ -227,4 +225,3 @@ labels = [r'Correlated data', r'Uncorrelated data (Mixed)', r'$\epsilon_{sim}$']
 fig.legend(handles, labels, loc='upper right', fontsize=fontsize-3, ncol=2)
 
 plt.show()
-
