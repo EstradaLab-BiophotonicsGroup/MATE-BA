@@ -10,7 +10,7 @@ readme = { file = "README.md", content-type = "text/markdown" }
 license = "GNU"
 classifiers = ["Programming Language :: Python :: 3"]
 requires-python = ">=3.11"
-dependencies = ["addcopyfighandler>=3.2.4,<4", "tqdm>=4.67.1,<5"]
+dependencies = [ "tqdm>=4.67.1,<5", "addcopyfighandler>=3.2.4,<4"]
 
 [project.urls]
 homepage = "https://github.com/EstradaLab-BiophotonicsGroup/mate-ba"
@@ -37,6 +37,7 @@ platforms = ['linux-64', 'win-64']
 python = ">=3.11"
 pandas = ">=2.2.3,<3"
 scipy = ">=1.15.1,<2"
+lfdfiles = ">=2023.9.26,<2024"
 
 [tool.pixi.tasks]
 fig1 = "python 'Code/Fig 1 and 2 - Molecular brightness using N data.py'"
