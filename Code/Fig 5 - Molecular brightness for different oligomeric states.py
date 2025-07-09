@@ -29,7 +29,7 @@ kimogram_8_mers = Kimogram(intensity_values,64)
 t_p=1e-6
 
 #%%
-## Molecular brightness calculated from N= 100 consecutive correlated lines                                                                                            
+## Molecular brightness calculated from N = 100 consecutive correlated lines                                                                                            
 # ---------------------------------------------------------------------------------
 
 window_points = 100 
@@ -38,25 +38,24 @@ delta_line = 1
 
 Epsilon_kimograms_100_corr_lines = []
 for i in (kimogram_1_mers, kimogram_2_mers, kimogram_4_mers, kimogram_8_mers):
-    Epsilon_kimograms_100_corr_lines.append(B_apparent_brightness_consecutives_lines(i, t_p,window_points=window_points, delta_line=delta_line, window_shift=window_shift).ravel())
+    Epsilon_kimograms_100_corr_lines.append(B_apparent_brightness_consecutives_lines(i, t_p,window_points=window_points, window_shift=window_shift)[0].ravel())
 Epsilon_kimograms_100_corr_lines = (np.array(Epsilon_kimograms_100_corr_lines)-1)/0.3536/t_p
 
 #%%
-## Molecular brightness calculated from N= 50,000 consecutive correlated lines                                                                                            
+## Molecular brightness calculated from N = 50,000 consecutive correlated lines                                                                                            
 # ---------------------------------------------------------------------------------
 
-## Number of lines to calculate apparent brightness
 window_points = 50000
 window_shift = window_points//400 
 delta_line = 1
 
 Epsilon_kimograms_50k_corr_lines = []
 for i in (kimogram_1_mers, kimogram_2_mers, kimogram_4_mers, kimogram_8_mers):
-    Epsilon_kimograms_50k_corr_lines.append(B_apparent_brightness_consecutives_lines(i, t_p, window_points=window_points, delta_line=delta_line, window_shift=window_shift).ravel())
+    Epsilon_kimograms_50k_corr_lines.append(B_apparent_brightness_consecutives_lines(i, t_p, window_points=window_points, window_shift=window_shift)[0].ravel())
 Epsilon_kimograms_50k_corr_lines = (np.array(Epsilon_kimograms_50k_corr_lines)-1)/0.3536/t_p
 
 #%%
-## Molecular brightness calculated from N= 100 uncorrelated (interspersed) lines                                                                                            
+## Molecular brightness calculated from N = 100 uncorrelated (interspersed) lines                                                                                            
 # ---------------------------------------------------------------------------------
 
 window_points = 100 
@@ -65,17 +64,17 @@ delta_line = int(len(kimogram_1_mers)/window_points)
 
 Epsilon_kimograms_100_lines_MATE_BA = []
 for i in (kimogram_1_mers, kimogram_2_mers, kimogram_4_mers, kimogram_8_mers):
-    Epsilon_kimograms_100_lines_MATE_BA.append(MATE_BA(i, t_p, window_points=window_points, delta_line=delta_line, window_shift=window_shift).ravel())
+    Epsilon_kimograms_100_lines_MATE_BA.append(MATE_BA(i, t_p, window_points=window_points, delta_line=delta_line, window_shift=window_shift)[0].ravel())
 Epsilon_kimograms_100_lines_MATE_BA = (np.array(Epsilon_kimograms_100_lines_MATE_BA)-1)/0.3536/t_p
 
 #%%
 ## Load save data
 
-# Epsilon_kimograms_100_corr_lines = np.array(list(pd.read_csv(path[:-5]+r'\Data for Figures\Fig 5 Epsilon_kimograms_100_corr_lines.txt', delimiter='\t').apply(lambda x: np.array(x.to_list()), axis=1)))
-# Epsilon_kimograms_50k_corr_lines = np.array(list(pd.read_csv(path[:-5]+r'\Data for Figures\Fig 5 Epsilon_kimograms_50k_corr_lines.txt', delimiter='\t').apply(lambda x: np.array(x.to_list()), axis=1)))
-# Epsilon_kimograms_100_lines_MATE_BA = np.array(list(pd.read_csv(path[:-5]+r'\Data for Figures\Fig 5 Epsilon_kimograms_100_lines_MATE_BA.txt', delimiter='\t').apply(lambda x: np.array(x.to_list()), axis=1)))
+# Epsilon_kimograms_100_corr_lines = pd.read_csv(path[:-5]+r'\Data for Figures\Fig 5 - Epsilon_kimograms_100_corr_lines.csv.gz', compression='gzip', dtype=np.float64).to_numpy()
+# Epsilon_kimograms_50k_corr_lines = pd.read_csv(path[:-5]+r'\Data for Figures\Fig 5 - Epsilon_kimograms_50k_corr_lines.csv.gz', compression='gzip', dtype=np.float64).to_numpy()
+# Epsilon_kimograms_100_lines_MATE_BA = pd.read_csv(path[:-5]+r'\Data for Figures\Fig 5 - Epsilon_kimograms_100_lines_MATE_BA.csv.gz', compression='gzip', dtype=np.float64).to_numpy()
 
-#%%
+# %%
 plt.close('all')
 
 ## General data parameters for plotting
@@ -118,8 +117,6 @@ plt.ylabel('                            Frequency', loc='center', fontsize = fon
 for ax in axs.flatten():
     ax.tick_params(which='minor', length=1.25, width=1)
     ax.tick_params(which='major', length=2.25, width=1)
-    
-    ax.tick_params(axis='both', labelsize=fontsize-3)
     ax.tick_params(axis='both', labelsize=fontsize-3)
 
 ## affect borders lines plot making theme thinners
