@@ -47,7 +47,6 @@ for i in zip([N_1e2_index, N_1e4_index, N_1e6_index]):
 k_random_Epsilon_correlated = np.array(k_random_Epsilon_correlated)
 k_random_Epsilon_UN_correlated = np.array(k_random_Epsilon_UN_correlated)
 
-
 #%%
 ## Load save data
 
@@ -141,4 +140,3 @@ labels = [r'Correlated data', r'Uncorrelated data (shuffled)', r'$\epsilon_{sim}
 fig.legend(handles, labels, loc='upper right', fontsize=fontsize-3, ncol=2)
 
 plt.show()
-
