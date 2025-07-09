@@ -119,17 +119,16 @@ MEDIAN_ = np.array(MEDIAN_)
 MAD_ = np.array(MAD_)
 
 #%%
-
 ## Load save data to reproduce Figure 4
 
-# saved_data = pd.read_csv(path[:-5]+r'\Data for Figures\Fig 4 - Epsilon values.txt', delimiter='\t')
-# EPS_ = list(saved_data.apply(lambda x: np.array((x.dropna()/tp).to_list()), axis=1))
+#saved_data = pd.read_csv(path[:-5]+r'\Data for Figures\Fig 4 - Epsilon values.txt', delimiter='\t')
+#EPS_ = list(saved_data.apply(lambda x: np.array((x.dropna()).to_list()), axis=1))
 
-# saved_data = pd.read_csv(path[:-5]+r'\Data for Figures\Fig 4 - Median values.txt', delimiter='\t')
-# MEDIAN_ = np.array(list(saved_data.apply(lambda x: np.array(x.dropna().to_list()), axis=1))).ravel()/tp
+#saved_data = pd.read_csv(path[:-5]+r'\Data for Figures\Fig 4 - Median values.txt', delimiter='\t')
+#MEDIAN_ = np.array(list(saved_data.apply(lambda x: np.array(x.dropna().to_list()), axis=1))).ravel()
 
-# saved_data = pd.read_csv(path[:-5]+r'\Data for Figures\Fig 4 - MAD values.txt', delimiter='\t')
-# MAD_ = np.array(list(saved_data.apply(lambda x: np.array(x.dropna().to_list()), axis=1))).ravel()/tp
+#saved_data = pd.read_csv(path[:-5]+r'\Data for Figures\Fig 4 - MAD values.txt', delimiter='\t')
+#MAD_ = np.array(list(saved_data.apply(lambda x: np.array(x.dropna().to_list()), axis=1))).ravel()
 
 
 #%%
@@ -138,14 +137,14 @@ MAD_ = np.array(MAD_)
 d1=0
 delta_diferences_index = 0
 while d1 < len(MEDIAN_):
-    if abs(MEDIAN_[d1]-Epsilon_simulated)<0.05*max(abs(np.array(MEDIAN_)-Epsilon_simulated)):
+    if abs(MEDIAN_[d1]-Epsilon_simulated)<0.01*max(abs(np.array(MEDIAN_)-Epsilon_simulated)):
         delta_diferences_index=d1
         d1=len(MEDIAN_)
     d1+=1
 
 
 #%%
-plt.close('all')
+
 fig, ax0 = plt.subplots(1, 1, figsize=(6,3), sharex=True, dpi=300)
 
 ax0.axhline(Epsilon_simulated, 0, J[-1], ls='--', color='k', lw=lw*0.75, alpha=0.75)
@@ -163,21 +162,21 @@ head_width=0.5
 
 ## Top arrow
 arrowprops = dict(arrowstyle='->, head_length=%s, head_width=%s'%(head_length, head_width), facecolor='r', edgecolor='r', lw=1.5)
-ax0.annotate('', xy=(J[delta_diferences_index], (MEDIAN_ + MAD_)[delta_diferences_index]),
-              xytext=(J[delta_diferences_index], (MEDIAN_ + MAD_)[delta_diferences_index]*1.37),
+ax0.annotate('', xy=(J[delta_diferences_index], (MEDIAN_ + MAD_)[delta_diferences_index]*1.05),
+              xytext=(J[delta_diferences_index], (MEDIAN_ + MAD_)[delta_diferences_index]*1.5),
               arrowprops=arrowprops)
 
 ## Bottom arrow
 arrowprops = dict(arrowstyle='->, head_length=%s, head_width=%s'%(head_length, head_width), facecolor='r', edgecolor='r', lw=1.5)
 ax0.annotate('', xy=(J[delta_diferences_index], 0.009),
-              xytext=(J[delta_diferences_index], (MEDIAN_ - MAD_)[delta_diferences_index]*-1.55),
+              xytext=(J[delta_diferences_index], (MEDIAN_ - MAD_)[delta_diferences_index]*-1.85),
               arrowprops=arrowprops)
 
 ax0.set_ylabel(r'$\epsilon_{median}$', fontsize = fontsize, labelpad = labelpad)
 ax0.set_xlabel('$J$', fontsize = fontsize, labelpad = labelpad)
 
-ax0.tick_params(which='minor', length=2, width=1)
-ax0.tick_params(which='major', length=3, width=1)
+ax0.tick_params(which='minor', length=1.25, width=1)
+ax0.tick_params(which='major', length=2.25, width=1)
 ax0.tick_params(axis='both', labelsize=fontsize-3)
 
 ax0.set_ylim(-0.4/tp, 1.7/tp)
@@ -195,7 +194,7 @@ fig.subplots_adjust(top=0.940,
 ## affect borders lines plot making theme thinners
 for axis in ['top','bottom','left','right']:
     ax0.spines[axis].set_linewidth(0.6)
-
+    
 plt.show()
 
 
