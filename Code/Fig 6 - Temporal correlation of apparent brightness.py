@@ -76,7 +76,6 @@ G_eps_1_mers_interspersed_lines, T_1_mers_interspersed_lines = pCOMB(epsilons_1_
 ###### ----------------------------------------------------------
 ######  Plot Figure 6 - EPSILONS
 ###### ----------------------------------------------------------
-plt.close('all')
 
 fig = plt.figure(figsize=(6, 6))
    
@@ -125,3 +124,4 @@ sfigs[1].subplots_adjust(top=1,
                   hspace=0,
                   wspace=0)
 
+plt.show()
