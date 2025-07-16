@@ -87,7 +87,7 @@ for i, ax, letter_, eps_corr, eps_UN_corr  in zip([0,1,2], axs.flatten(), letter
                                                   k_random_Epsilon_correlated, 
                                                   k_random_Epsilon_UN_correlated):
 
-    ax.text(2.55/tp, 8.85/tp, letter_, fontsize=11)
+    ax.text(2.55/tp, 9.485, letter_, fontsize=11)
     ax.hist(k_random_Epsilon_UN_correlated[i], bins=bins, log=log, density = density, color= 'olivedrab', alpha=0.5, edgecolor='None')
     ax.hist(k_random_Epsilon_correlated[i], bins=bins, log=log, density = density, color= 'white', hatch="//////", alpha=0.5, edgecolor='lightgreen')
     ax.axvline(np.nanmedian(k_random_Epsilon_UN_correlated[i]), ls='-', color='olivedrab', lw=0.75*lw, alpha=0.75)
